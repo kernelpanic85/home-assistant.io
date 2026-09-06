@@ -52,6 +52,8 @@ Trigger when:
     - **All**: fires only after every targeted entity crosses the threshold.
 
     This corresponds to the `behavior` field in YAML. Default is **Each**.
+  required: false
+  default: Each
 For at least:
   description: How long the reading must remain past the threshold before the trigger fires. Useful to avoid triggering on brief fluctuations. For example, set it to `0:30:00` to fire only after the reading has stayed past the threshold for 30 minutes. Default is `0` (fires immediately).
 {% endoptions_ui %}
@@ -158,11 +160,11 @@ for:
 
 ## Good to know
 
+- Use a sensor with the battery device class.
 - **Above** and **Below** fire on the crossing moment only. Once the reading is above the threshold, the trigger does not fire again until the reading dips back below it and then crosses above again.
 - **In range** (`between`) fires when the reading moves from outside the bounds into the bounds. **Outside range** (`outside`) fires when the reading moves from inside the bounds past either bound.
 - Pair this trigger with the [Battery level changed](/triggers/battery.level_changed/) trigger if you also want to react to smaller fluctuations between crossings.
 - Pair this trigger with the Battery level condition to double-check the final state.
-- The trigger works with sensors that have the battery device class.
 
 {% include triggers/try_it.md %}
 

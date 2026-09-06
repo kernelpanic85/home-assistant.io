@@ -14,14 +14,20 @@ ha_domain: led_infrared
 ha_config_flow: true
 ha_platforms:
   - button
+  - diagnostics
   - event
   - light
 ha_integration_type: device
+ha_quality_scale: platinum
 ---
 
 The **LED Infrared** {% term integration %} lets you control lights with any infrared emitter that has been previously configured in Home Assistant. It can also receive commands from a remote when you have an infrared receiver set up, allowing you to use the remote to trigger automations in Home Assistant.
 
 Because the integration communicates over infrared, it operates in a one-way, fire-and-forget fashion: commands are sent to the light, but there is no feedback channel to confirm the current state of the light. The integration therefore uses assumed states.
+
+## How you can use the integration
+
+After setup, you can control your LED device from Home Assistant with the created light entity. Use it to turn the light on or off, adjust brightness, and select supported effects. If you configured an infrared receiver, the event entity lets you trigger automations from your remote control.
 
 ## Supported devices
 
@@ -200,6 +206,16 @@ automation: |
 ## Known limitations
 
 The integration uses assumed state, meaning Home Assistant cannot read the actual state of the light (for example, whether it is on or off, or what the current brightness is).
+
+## Troubleshooting
+
+If your LED Infrared setup is not working as expected, first make sure the infrared emitter and receiver entities are available in Home Assistant and that your infrared hardware is placed correctly. If you are using an infrared receiver, verify that your remote is sending signals that Home Assistant can detect.
+
+Some remotes can use overlapping infrared codes with other devices, which may cause the same code to be interpreted for different functions. If you notice unexpected behavior, try isolating the remote or checking whether another infrared device is using similar codes.
+
+For additional troubleshooting steps and guidance, see the [infrared troubleshooting](/integrations/infrared/#troubleshooting) section.
+
+If you need to report an issue, enable [debug logging](/docs/configuration/troubleshooting/#debug-logs-and-diagnostics), then reload the integration. Reproduce the issue, disable debug logging, and attach the automatically downloaded debug log to your report.
 
 ## Removing the integration
 
